@@ -4,12 +4,9 @@
     <p>L'équipe des bras cassés</p>
   </div>
 </template>
-<script>
-export default {};
-</script>
 
 <style scoped>
-#about {
+.about {
   text-align: center;
   background-color: brown;
 }

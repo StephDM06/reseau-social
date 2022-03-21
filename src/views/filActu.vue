@@ -51,6 +51,7 @@ export default DataPost;
 
 <style scoped>
 #principale {
+  font-family: lato;
   text-align: center;
 }
 /* Style form new post*/
