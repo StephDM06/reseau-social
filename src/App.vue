@@ -1,16 +1,13 @@
 <template>
-  <Nav />
+  <nav>
+    <router-link to="/">Accueil</router-link>
+    <router-link to="/about">A propos</router-link>
+  </nav>
   <router-view />
 </template>
 
 <script>
-import Nav from "@/components/Nav.vue";
-
-export default {
-  components: {
-    Nav,
-  },
-};
+const principale = {};
 </script>
 
-<style lang="scss"></style>
+<style scoped></style>

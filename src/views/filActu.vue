@@ -1,9 +1,18 @@
 <template></template>
 
 <script>
-const DataPost = {};
+const DataPost = {
+  data() {
+    return {
+      post: [],
+    };
+  },
+};
 
 export default DataPost;
 </script>
-
-<style></style>
+<style scoped>
+#principale {
+  text-align: center;
+}
+</style>
