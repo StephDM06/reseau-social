@@ -17,6 +17,11 @@ const routes = [
     name: "filActu",
     component: DataPost,
   },
+  {
+    path: "/profil",
+    name: "Profil",
+    component: () => import("../views/Profil.vue"),
+  },
 ];
 
 const router = createRouter({

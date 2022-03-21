@@ -19,6 +19,7 @@ export default DataPost;
 
 <style scoped>
 #principale {
+  font-family: lato;
   text-align: center;
 }
 </style>
