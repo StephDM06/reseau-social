@@ -9,12 +9,4 @@
 
 <script></script>
 
-<style scoped>
-nav {
-  display: flex;
-  justify-content: space-around;
-  height: 100px;
-  background-color: aquamarine;
-  align-items: center;
-}
-</style>
+<style scoped></style>

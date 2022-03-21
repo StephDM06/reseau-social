@@ -1,36 +1,4 @@
-<template>
-  <div id="principale">
-    <h1>Votre fil d'actualité</h1>
-    <h3>Les derniers post</h3>
-
-    <!--form pour creation nouveau post-->
-    <div class="newPost">
-      <span id="newPostTitle">Create Post:</span>
-      <form id="newPostForm" action="">
-        
-        <input type="text" name="userInput" id="userInput" placeholder="Username..."/>
-
-        <input type="text" name="dateInput" id="dateInput" placeholder="Date of post..."/>
-        <input
-          placeholder="Your post..."
-          maxlength="80"
-          type="text"
-          name="contentInput"
-          id="contentInput"
-        />
-        <button type="submit" id="buttonAddPost">Add Post</button>
-      </form>
-    </div>
-
-    <Post
-      like="likeCount"
-      user="userName"
-      date="postDate"
-      content="postContent"
-    >
-    </Post>
-  </div>
-</template>
+<template></template>
 
 <script>
 import Post from "@/components/Post.vue";
@@ -48,7 +16,6 @@ const DataPost = {
 
 export default DataPost;
 </script>
-
 <style scoped>
 #principale {
   font-family: lato;
@@ -89,5 +56,4 @@ export default DataPost;
   width: 20%;
 }
 /* Fin style form new post*/
-
 </style>
