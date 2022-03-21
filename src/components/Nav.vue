@@ -4,6 +4,7 @@
       <h1>ACTU-DEV-WEB</h1>
       <p>Acceuil</p>
       <p>Profil</p>
+      <p>actualite</p>
       <p>A Propos</p>
     </div>
     <div>
