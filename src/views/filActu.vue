@@ -1,8 +1,35 @@
 <template>
+  <div id="principale">
+    <!--form pour creation nouveau post-->
+    <div class="newPost">
+      <span id="newPostTitle">Create Post:</span>
+      <form id="newPostForm" action="">
+        <input
+          type="text"
+          name="userInput"
+          id="userInput"
+          placeholder="Username..."
+        />
 
-  <Post>
+        <input
+          type="text"
+          name="dateInput"
+          id="dateInput"
+          placeholder="Date of post..."
+        />
 
-  </Post>
+        <input
+          placeholder="Your post..."
+          maxlength="80"
+          type="text"
+          name="contentInput"
+          id="contentInput"
+        />
+        <button type="submit" id="buttonAddPost">Add Post</button>
+      </form>
+    </div>
+    <List> </List>
+  </div>
 </template>
 
 <script>
@@ -21,6 +48,8 @@ const DataPost = {
     List:List,
   },
 };
+
+
 
 export default DataPost;
 </script>
