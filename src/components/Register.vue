@@ -124,7 +124,7 @@ const Registrer = {
   },
 };
 
-export default Registrer;
+export default Register;
 </script>
 
 <style scoped>
