@@ -8,7 +8,6 @@
       <p>Prénom: {{ prenom }}</p>
       <p>Mail: {{ mail }}</p>
       <p>Mot de passe: {{ mdp }}</p>
-      <p>Date de naissance: {{ jour }} {{ mois }} {{ annee }}</p>
     </section>
   </div>
 </template>

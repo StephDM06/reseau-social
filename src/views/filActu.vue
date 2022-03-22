@@ -1,21 +1,16 @@
 <template>
   <div id="principale">
+    <span id="openCreatePost">Post something</span>
     <!--form pour creation nouveau post-->
     <div class="newPost">
       <span id="newPostTitle">Create Post:</span>
       <form id="newPostForm" action="">
         <input
           type="text"
-          name="userInput"
-          id="userInput"
-          placeholder="Username..."
-        />
-
-        <input
-          type="text"
-          name="dateInput"
-          id="dateInput"
-          placeholder="Date of post..."
+          name="titleInput"
+          id="titleInput"
+          placeholder="Title..."
+          v-model.lazy="title"
         />
 
         <input
@@ -24,8 +19,9 @@
           type="text"
           name="contentInput"
           id="contentInput"
+          v-model.lazy="content"
         />
-        <button type="submit" id="buttonAddPost">Add Post</button>
+        <span id="buttonAddPost" @click="getNewPost">Add Post</span>
       </form>
     </div>
     <List> </List>
@@ -39,9 +35,29 @@ import List from "@/components/RecupPost.vue";
 const DataPost = {
   data() {
     return {
-      post: [],
+      //tableau pour stocker nouveau post
+      newPostTable: [],
+
+      //data properties pour récuperer les valuers des inputs d'un nouveau post
+      title: "",
+      content: "",
     };
   },
+
+  methods: {
+    getNewPost() {
+      if (title == "" && content == "") {
+        return alert("veuillez remplir les champs");
+      } else {
+        this.newPostTable.push(this.title);
+        this.newPostTable.push(this.title);
+        this.title = "";
+        this.content = "";
+        console.log(this.newPostTable);
+      }
+    },
+  },
+
   components: {
     Post: Post,
     List: List,
@@ -52,7 +68,7 @@ export default DataPost;
 </script>
 <style scoped>
 #principale {
-  font-family: lato;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
 }
 /* Style form new post*/
@@ -88,6 +104,14 @@ export default DataPost;
   background-color: #b0eeb3;
   font-size: 1.5rem;
   width: 20%;
+}
+
+#openCreatePost {
+  cursor: pointer;
+  margin-left: 60rem;
+  background-color: #b0eeb3;
+  padding: 0.5rem;
+  border-radius: 25%;
 }
 /* Fin style form new post*/
 </style>
