@@ -56,7 +56,7 @@
 <script>
 
 
-const Registrer = {
+const Register = {
   data() {
     return {
       profil: [],
