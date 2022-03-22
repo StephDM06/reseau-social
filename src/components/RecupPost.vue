@@ -1,25 +1,26 @@
-<template></template>
+<template>
+  <div id="fil">
+    <p>{{ lastname }} {{ firstname }}</p>
+    <p>{{ title }}</p>
+    <p>{{ content }}</p>
+  </div>
+</template>
 
 <script>
-import Post from "./Post.vue";
-
 const List = {
-  data() {
-    return {
-    Post:[],
-    };
+
+  props: {
+    title: String,
+    content: String,
+    firstname: String,
+    lastname: String,
   },
 
-  async mounted() {
-    const Post = await fetch("https://snapi-coyote.osc-fr1.scalingo.io/posts"
-    );
-    let data = await Post.json();
 
-    this.post = data.post;
-    console.log(Post);
-  },
 };
 export default List;
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
