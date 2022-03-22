@@ -44,12 +44,9 @@ const DataPost = {
   },
   components: {
     Post: Post,
-  
-    List:List,
+    List: List,
   },
 };
-
-
 
 export default DataPost;
 </script>

@@ -9,7 +9,7 @@
       <button class="like">Recherche</button>
     </div>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <script></script>
