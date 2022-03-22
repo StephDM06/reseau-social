@@ -1,7 +1,6 @@
 <template>
   <nav>
-    
-    <router-link to="/login">Se connecter</router-link>
+    <router-link to="/login">Bienvenue</router-link>
   </nav>
   <router-view />
 </template>

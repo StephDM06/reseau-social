@@ -1,35 +1,46 @@
 <template>
-  <div>
-    <h1>Se connecter</h1>
-    <LoginForm @submit="login" />
-  </div>
+  <form @submit.prevent>
+    <input type="email" v-model="authentif.email" />
+    <input type="password" v-model="authentif.password" />
+    <input type="submit" @click="validation" value="connectez vous" />
+  </form>
 </template>
 
 <script>
-import LoginForm from "@/components/LoginForm.vue";
 
-const Authentication = {
+
+const LoginForm = {
   data() {
     return {
-      user: {},
+      authentif: {
+        email: "test@test.com",
+        password: "test",
+      },
     };
   },
 
-
-
   methods: {
-  async login() {
-      this.users = { email, password };
-      await fetch ("https://snapi-coyote.osc-fr1.scalingo.io/")
+    validation() {
+      this.connexion();
     },
-  },
-
-
-  components: {
-    LoginForm,
+    async connexion() {
+      
+      const response = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/login",
+        {
+          method: "POST",
+          body: JSON.stringify(this.authentif),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response, "test");
+    },
   },
 };
 
-/* PARTIE AUTHENTIFICATION VALIDE */
-export default Authentication;
+export default LoginForm;
 </script>
+
+<style></style>
