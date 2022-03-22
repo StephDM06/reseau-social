@@ -21,6 +21,7 @@ const LoginForm = {
     validation() {
       this.connexion();
     },
+
     async connexion() {
       const response = await fetch(
         "https://snapi-coyote.osc-fr1.scalingo.io/login",

@@ -1,6 +1,8 @@
 <template>
   <nav>
-    <router-link to="/login">Bienvenue</router-link>
+    <router-link to="/connexion">Acceuil</router-link> 
+    
+    <router-link to="/AboutView">A propos</router-link>
   </nav>
   <router-view />
 </template>
