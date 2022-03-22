@@ -1,7 +1,5 @@
 <template>
-<List>
 
-  </List>
   <Post>
 
   </Post>
