@@ -7,10 +7,6 @@
 </template>
 
 <script>
-
-
-
-
 const LoginForm = {
   data() {
     return {
@@ -21,13 +17,11 @@ const LoginForm = {
     };
   },
 
-
   methods: {
     validation() {
       this.connexion();
     },
     async connexion() {
-      
       const response = await fetch(
         "https://snapi-coyote.osc-fr1.scalingo.io/login",
         {
@@ -35,23 +29,17 @@ const LoginForm = {
           body: JSON.stringify(this.authentif),
           headers: {
             "Content-Type": "application/json",
-          
           },
         }
       );
       console.log(response, "test");
-      let toktok = await response.json()
-      console.log(toktok)
-
+      let toktok = await response.json();
+      console.log(toktok);
     },
   },
-
-
-
 };
 
 export default LoginForm;
 </script>
 
-<style>
-</style>
+<style></style>

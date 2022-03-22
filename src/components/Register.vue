@@ -54,12 +54,7 @@
 </template>
 
 <script>
-
-
-
- const Registrer = {
-  
-  name: "Register",
+const Registrer = {
   data() {
     return {
       profil: [],
@@ -76,9 +71,6 @@
       this.nom = e.target.value;
       this.password = e.target.value;
       this.email = e.target.value;
-
-
-
     },
 
     addToProfile() {
@@ -133,7 +125,6 @@
 };
 
 export default Registrer;
-
 </script>
 
 <style scoped>
