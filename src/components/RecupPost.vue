@@ -1,7 +1,7 @@
 <template>
   <div id="fil">
-    <p>{{ lastname }} {{ firstname }}</p>
-    <p>{{ title }}</p>
+    <p>{{ firstname }} {{ lastname }}</p>
+    <p><strong>{{ title }}</strong></p>
     <p>{{ content }}</p>
   </div>
 </template>

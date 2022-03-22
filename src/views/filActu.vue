@@ -45,6 +45,7 @@ const DataPost = {
       post:[],
       //tableau pour stocker nouveau post
       newPostTable: [],
+      newPostObject:{},
 
       //data properties pour récuperer les valuers des inputs d'un nouveau post
       title: "",
@@ -61,11 +62,12 @@ const DataPost = {
       if (this.title == "" && this.content == "") {
         return alert("veuillez remplir les champs");
       } else {
-        this.newPostTable.push(this.title, this.content);
-        // this.newPostTable.push(this.content);
+        this.newPostObject.push(this.title, this.content);
+        this.newPostTable.push(this.newPostObject);
         this.title = "";
         this.content = "";
         console.log(this.newPostTable);
+        console.log(this.newPostObject);
       }
     },
   },
