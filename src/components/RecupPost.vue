@@ -1,18 +1,22 @@
 <template></template>
 
 <script>
+import Post from "./Post.vue";
+
 const List = {
   data() {
     return {
-      list: [],
+    Post:[],
     };
   },
 
   async mounted() {
-    const listPost = await fetch("https://snapi-coyote.osc-fr1.scalingo.io/");
-    let data = await listPost.json();
-    this.list = data.post;
-    console.log("data");
+    const Post = await fetch("https://snapi-coyote.osc-fr1.scalingo.io/posts"
+    );
+    let data = await Post.json();
+
+    this.post = data.post;
+    console.log(Post);
   },
 };
 export default List;
