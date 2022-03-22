@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent>
-    <input type="email" v-model="authentif.email" />
+    <input type="e {mail" v-model="authentif.email" />
     <input type="password" v-model="authentif.password" />
     <input type="submit" @click="validation" value="connectez vous" />
   </form>
@@ -32,15 +32,24 @@ const LoginForm = {
           body: JSON.stringify(this.authentif),
           headers: {
             "Content-Type": "application/json",
+          
           },
         }
       );
       console.log(response, "test");
+      let toktok = await response.json()
+
+      console.log(toktok)
+
     },
   },
+
+
+
 };
 
 export default LoginForm;
 </script>
 
-<style></style>
+<style>
+</style>
