@@ -1,27 +1,21 @@
-<template>
-  
-
-</template>
+<template></template>
 
 <script>
-const List= {
-data(){
+const List = {
+  data() {
     return {
-        list:[],
+      list: [],
     };
-},
+  },
 
-async mounted() {
-    const listPost=await fetch(
-        "https://snapi-coyote.osc-fr1.scalingo.io/"
-    );
+  async mounted() {
+    const listPost = await fetch("https://snapi-coyote.osc-fr1.scalingo.io/");
     let data = await listPost.json();
+    this.list = data.post;
     console.log("data");
-    },
+  },
 };
 export default List;
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
