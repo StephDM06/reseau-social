@@ -15,6 +15,7 @@ const authent = {
 };
 
 
+
 export default authent;
 </script>
 
