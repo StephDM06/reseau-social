@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="main-profil">
     <section id="profil">
       <h1>Profil</h1>
     </section>
@@ -38,6 +38,15 @@ export default Profil;
   width: 350px;
   text-align: left;
   margin-left: 40%;
-  padding-top: 15%;
+  padding-top: 20px;
+}
+#main-profil {
+  font-display: block;
+  justify-content: center;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 5%;
+  background-color: aquamarine;
+  border-radius: 10px;
 }
 </style>

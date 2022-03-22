@@ -2,8 +2,8 @@
   <nav id="main-nav"></nav>
 </template>
 <script>
-const Nav = {};
-export default Nav;
+const Contenue = {};
+export default Contenue;
 </script>
 
 <style></style>
