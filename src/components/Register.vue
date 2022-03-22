@@ -22,11 +22,16 @@
       type="text"
       placeholder="E-mail"
     /><br />
-    <input type="password" placeholder="Nouveau mot de passe" /><br />
-    <input type="password" placeholder="Confirmez mot de passe" /><br />
+    <!--Mot de passe/Confirmer MDP-->
+    <input
+      v-model="mdp"
+      type="password"
+      placeholder="Nouveau mot de passe"
+    /><br />
 
+    <!--Date de Naissance-->
     <p>Date de Naissance:</p>
-    <select name="jour">
+    <select v-model="jour">
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -148,14 +153,12 @@
       <option value="23">1951</option>
       <option value="23">1950</option></select
     ><br />
-
+    <!--Genre-->
     <p>Genre:</p>
-    <input type="radio" name="homme" value="homme" />
+    <input type="radio" name="homme" v-bind:value="homme" />
     <label for="homme">Homme</label>
-    <input type="radio" name="femme" value="femme" />
+    <input type="radio" name="femme" v-bind:value="femme" />
     <label for="femme">Femme</label>
-    <input type="radio" name="jsp" value="jsp" />
-    <label for="jsp">Je sais pas encore</label>
     <br />
     <br />
 
@@ -176,6 +179,27 @@
 <script>
 export default {
   name: "Register",
+  data() {
+    return {
+      profil: [],
+      prenom: "",
+      nom: "",
+      mail: "",
+      mdp: "",
+      date: "",
+    };
+  },
+
+  methods: {
+    setNewInfo(e) {
+      this.prenom = e.target.value;
+      this.nom = e.target.value;
+      this.mdp = e.target.value;
+      this.mail = e.target.value;
+      this.mdp = e.target.value;
+    },
+  },
+
   computed: {
     verifPrenom() {
       if (this.prenom.length > 1) {
