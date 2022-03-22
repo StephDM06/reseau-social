@@ -1,10 +1,13 @@
 <template>
 <List>
+
   </List>
+  <Post>
+
+  </Post>
 </template>
 
 <script>
-import Nav from "@/components/Nav.vue";
 import Post from "@/components/Post.vue";
 import List from "@/components/RecupPost.vue";
 
@@ -16,8 +19,8 @@ const DataPost = {
   },
   components: {
     Post: Post,
-    Nav: Nav,
-    List:List
+  
+    List:List,
   },
 };
 
