@@ -4,7 +4,7 @@
     <!--Prenom-->
     <input
       :class="verifPrenom"
-      v-model="prenom"
+      v-model="firstname"
       type="text"
       placeholder="Prénom"
     />
@@ -12,7 +12,7 @@
     <!--Nom-->
     <input
       :class="verifNom"
-      v-model="nom"
+      v-model="lastname"
       type="text"
       placeholder="Nom"
     /><br />
@@ -54,14 +54,12 @@
 </template>
 
 <script>
-
-
 const Register = {
   data() {
     return {
       profil: [],
-      prenom: "",
-      nom: "",
+      firstname: "",
+      lastname: "",
       email: "",
       password: "",
     };
@@ -69,31 +67,33 @@ const Register = {
 
   methods: {
     setNewInfo(e) {
-      this.prenom = e.target.value;
-      this.nom = e.target.value;
+      this.firstname = e.target.value;
+      this.lastname = e.target.value;
       this.password = e.target.value;
       this.email = e.target.value;
     },
 
     addToProfile() {
-      this.profil.push(this.prenom);
-      this.profil.push(this.nom);
-      this.profil.push(this.email);
-      this.profil.push(this.password);
+      this.profil.push({
+        firstname: this.firstname,
+        lastname: this.lastname,
+        password: this.password,
+        email: this.email,
+      });
       console.log(this.profil);
     },
   },
 
   computed: {
     verifPrenom() {
-      if (String(this.prenom).length > 2) {
+      if (String(this.firstname).length > 2) {
         return "green";
       }
       return "red";
     },
 
     verifNom() {
-      if (String(this.nom).length > 3) {
+      if (String(this.lastname).length > 3) {
         return "green";
       }
       return "red";
