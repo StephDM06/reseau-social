@@ -48,14 +48,13 @@
       les cookies et autres technologies similaires en consultant notre
       Politique d’utilisation des cookies. Vous recevrez peut-être des
       notifications par texto de notre part et vous pouvez à tout moment vous
-      désabonner.
+      désabonner
     </h6>
   </form>
 </template>
 
 <script>
-export default {
-  name: "Register",
+const Registrer = {
   data() {
     return {
       profil: [],
@@ -124,6 +123,8 @@ export default {
     },
   },
 };
+
+export default Registrer;
 </script>
 
 <style scoped>

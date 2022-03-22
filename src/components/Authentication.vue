@@ -16,6 +16,7 @@ const LoginForm = {
       },
     };
   },
+
   methods: {
     validation() {
       this.connexion();
@@ -37,6 +38,7 @@ const LoginForm = {
     },
   },
 };
+
 export default LoginForm;
 </script>
 
