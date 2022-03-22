@@ -1,9 +1,12 @@
 <template>
+<div>
+  <h1>J'ai déjà un compte</h1>
   <form @submit.prevent>
     <input type="email" v-model="authentif.email" />
     <input type="password" v-model="authentif.password" />
     <input type="submit" @click="validation" value="connectez vous" />
   </form>
+  </div>
 </template>
 
 <script>

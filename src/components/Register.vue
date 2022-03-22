@@ -1,4 +1,5 @@
 <template>
+<div>
   <h1>Inscrivez-vous facilement</h1>
   <form @submit.prevent>
     <!--Prenom-->
@@ -51,10 +52,11 @@
       désabonner
     </h6>
   </form>
+  </div>
 </template>
 
 <script>
-const Registrer = {
+const Register = {
   data() {
     return {
       profil: [],
@@ -124,7 +126,7 @@ const Registrer = {
   },
 };
 
-export default Registrer;
+export default Register;
 </script>
 
 <style scoped>

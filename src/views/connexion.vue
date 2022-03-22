@@ -13,4 +13,5 @@ const authent = {
     Register: Register,
   },
 };
+export default authent;
 </script>
