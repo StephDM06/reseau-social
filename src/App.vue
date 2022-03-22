@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar">
     <h1>ACTU-DEV-WEB</h1>
-    <router-link to="/">Accueil</router-link>
-    <router-link to="/Profil">Profil</router-link>
-    <router-link to="/about">A propos</router-link>
+    <router-link class="route" to="/">Accueil</router-link>
+    <router-link class="route" to="/Profil">Profil</router-link>
+    <router-link class="route" to="/about">A Propos</router-link>
     <div>
       <input type="text" placeholder="Recherche" />
       <button class="like">Recherche</button>
@@ -38,5 +38,12 @@ input {
 .like {
   border: none;
   color: blue;
+}
+.route {
+  border: none;
+  border-radius: 5px;
+  width: 80px;
+  color: rgb(102, 100, 100);
+  background-color: rgb(180, 177, 177);
 }
 </style>
