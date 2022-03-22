@@ -1,12 +1,14 @@
 <template>
   <form @submit.prevent>
-    <input type="e {mail" v-model="authentif.email" />
+    <input type="email" v-model="authentif.email" />
     <input type="password" v-model="authentif.password" />
     <input type="submit" @click="validation" value="connectez vous" />
   </form>
 </template>
 
 <script>
+
+
 
 
 const LoginForm = {
@@ -18,6 +20,7 @@ const LoginForm = {
       },
     };
   },
+
 
   methods: {
     validation() {
@@ -38,7 +41,6 @@ const LoginForm = {
       );
       console.log(response, "test");
       let toktok = await response.json()
-
       console.log(toktok)
 
     },
