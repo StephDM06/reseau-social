@@ -24,16 +24,19 @@
         <span id="buttonAddPost" @click="getNewPost">Add Post</span>
       </form>
     </div>
-    <List
-      class="liste"
-      v-for="(element, index) in posts"
-      :key="index"
-      :lastname="element.lastname"
-      :firstname="element.firstname"
-      :title="element.title"
-      :content="element.content"
-    >
-    </List>
+
+    <div class="postsContainer">
+      <List
+        class="liste"
+        v-for="(element, index) in posts"
+        :key="index"
+        :lastname="element.lastname"
+        :firstname="element.firstname"
+        :title="element.title"
+        :content="element.content"
+      >
+      </List>
+    </div>
   </div>
 </template>
 
@@ -114,6 +117,7 @@ export default DataPost;
   display: flex;
   flex-direction: column;
   margin-top: 10%;
+  margin-bottom: 10%;
   align-items: center;
 }
 
@@ -152,7 +156,15 @@ export default DataPost;
   border-radius: 25%;
 }
 .liste {
-  padding-top: 5%;
+  width: 50%;
 }
 /* Fin style form new post*/
+
+/**  Style du conteneur qui tient tous les posts */
+.postsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
 </style>
