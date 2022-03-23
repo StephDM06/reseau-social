@@ -15,7 +15,6 @@
           placeholder="Title..."
           v-model.lazy="title"
         />
-
         <input
           placeholder="Your post..."
           maxlength="80"
@@ -56,10 +55,6 @@
               Like : {{ element.likes.length }}
             </button>
           </div>
-          <span>Comments:</span>
-          <div class="commentsContainer">
-            <!-- <span v-for="(element, index) in" class="indivComment"></span> a finir!!!!!! -->
-          </div>
         </div>
       </div>
     </div>
@@ -89,6 +84,8 @@ const DataPost = {
   components: {
     Post: Post,
     List: List,
+    Lost: lost,
+    ù$$$$$$,
   },
   methods: {
     //Récupération des posts sur le serveur
@@ -142,6 +139,27 @@ const DataPost = {
           },
         }
       );
+
+      if (response.status === 200) {
+        this.getPosts();
+      }
+    },
+    async addcomment(id) {
+      const response = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/post/comment",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            postId: id,
+            content: this.content,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + this.token,
+          },
+        }
+      );
+      console.log(response);
 
       if (response.status === 200) {
         this.getPosts();
