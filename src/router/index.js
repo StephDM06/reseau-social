@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import DataPost from "../views/filActu.vue";
+import ProfilDonnees from "../views/Profil.vue";
 
 const routes = [
   {
@@ -20,7 +21,7 @@ const routes = [
   {
     path: "/profil",
     name: "Profil",
-    component: () => import("../views/Profil.vue"),
+    component: ProfilDonnees,
   },
 ];
 
