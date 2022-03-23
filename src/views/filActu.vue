@@ -63,23 +63,24 @@ import List from "@/components/RecupPost.vue";
 const DataPost = {
   data() {
     return {
+      //data properties pour récuperer les valuers des inputs d'un nouveau post et afficher les posts existants
       posts: [],
       verif: true,
       token:
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjM5OWJlOTI3ZGRiOTAwMWE4NzViZDUiLCJpYXQiOjE2NDgwMjQ5MTgsImV4cCI6MTY0ODExMTMxOH0.caIFiFoS-QCjwSdUCs6c8IoaV5Y1Y3DtKjeHuyTD3Cg",
-
-      //data properties pour récuperer les valuers des inputs d'un nouveau post
       title: "",
       content: "",
       showtext: false,
       showcomment: true,
     };
   },
+  //Déclaration des composants et intégration dans le VDOM
   components: {
     Post: Post,
     List: List,
   },
   methods: {
+    //Récupération des posts sur le serveur
     async getPosts() {
       const Post = await fetch(
         "https://snapi-coyote.osc-fr1.scalingo.io/posts"
@@ -89,17 +90,16 @@ const DataPost = {
       this.posts = data.posts;
     },
     getNewPost() {
-      console.log("coucou");
+      //Attribution des valeurs du nouveau post title et content
       if (this.title == "" && this.content == "") {
         return alert("veuillez remplir les champs");
       } else {
         const newPost = { title: this.title, content: this.content };
-        // this.newPostTable.push(this.content);
-        // this.title = "";
-        // this.content = "";
+
         this.newPublication(newPost);
       }
     },
+    //Envoi des nouveaux post et raffraichissement de l'affichage
     async newPublication(post) {
       const publi = await fetch(
         "https://snapi-coyote.osc-fr1.scalingo.io/post",
@@ -112,12 +112,13 @@ const DataPost = {
           },
         }
       );
-
+      // Vérification du retour serveur et rappel de la méthode d'affichage
       if (publi.status === 200) {
         this.getPosts();
       }
     },
   },
+  //Au montage de l'application envoi de la requète des posts
   async mounted() {
     this.getPosts();
   },
