@@ -4,7 +4,7 @@
     <!--Prenom-->
     <input
       :class="verifPrenom"
-      v-model="prenom"
+      v-model="firstname"
       type="text"
       placeholder="Prénom"
     />
@@ -12,7 +12,7 @@
     <!--Nom-->
     <input
       :class="verifNom"
-      v-model="nom"
+      v-model="lastname"
       type="text"
       placeholder="Nom"
     /><br />
@@ -38,7 +38,7 @@
       type="submit"
       value="Inscription"
       v-show="allConfirm"
-      @click="addToProfile"
+      @click="validation"
     />
 
     <h6>
@@ -54,44 +54,54 @@
 </template>
 
 <script>
-const Registrer = {
+const Register = {
   data() {
     return {
-      profil: [],
-      prenom: "",
-      nom: "",
+      firstname: "",
+      lastname: "",
       email: "",
       password: "",
     };
   },
 
   methods: {
-    setNewInfo(e) {
-      this.prenom = e.target.value;
-      this.nom = e.target.value;
-      this.password = e.target.value;
-      this.email = e.target.value;
+    validation() {
+      this.registre();
     },
 
-    addToProfile() {
-      this.profil.push(this.prenom);
-      this.profil.push(this.nom);
-      this.profil.push(this.email);
-      this.profil.push(this.password);
-      console.log(this.profil);
+    async registre() {
+      const response = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/register",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            firstname: this.firstname,
+            lastname: this.lastname,
+            email: this.email,
+            password: this.password,
+          }),
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response, "test");
+      let toktok = await response.json();
+      console.log(toktok);
     },
   },
 
   computed: {
     verifPrenom() {
-      if (String(this.prenom).length > 2) {
+      if (String(this.firstname).length > 2) {
         return "green";
       }
       return "red";
     },
 
     verifNom() {
-      if (String(this.nom).length > 3) {
+      if (String(this.lastname).length > 3) {
         return "green";
       }
       return "red";
@@ -124,7 +134,7 @@ const Registrer = {
   },
 };
 
-export default Registrer;
+export default Register;
 </script>
 
 <style scoped>
