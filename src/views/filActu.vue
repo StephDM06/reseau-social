@@ -156,7 +156,7 @@ const DataPost = {
           }),
           headers: {
             "Content-Type": "application/json",
-            Authorization: "bearer " + this.token,
+            Authorization: "bearer " + this.toktok,
           },
         }
       );
@@ -176,7 +176,7 @@ const DataPost = {
           }),
           headers: {
             "Content-Type": "application/json",
-            Authorization: "bearer " + this.token,
+            Authorization: "bearer " + this.toktok,
           },
         }
       );
