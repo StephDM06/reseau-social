@@ -34,6 +34,7 @@
     /><br />
     <br />
 
+    <!--[BOUTON] Envoyer formulaire-->
     <input
       type="submit"
       value="Inscription"
@@ -41,6 +42,7 @@
       @click="validation"
     />
 
+    <!--Condition d'utilisation que personne ne lit-->
     <h6>
       En cliquant sur S’inscrire, vous acceptez nos Conditions générales.
       Découvrez comment nous recueillons, utilisons et partageons vos données en
@@ -48,13 +50,14 @@
       les cookies et autres technologies similaires en consultant notre
       Politique d’utilisation des cookies. Vous recevrez peut-être des
       notifications par texto de notre part et vous pouvez à tout moment vous
-      désabonner
+      désabonner même si c'est sympa
     </h6>
   </form>
 </template>
 
 <script>
 const Register = {
+  //DATAS____________________________________________________________________________________________
   data() {
     return {
       firstname: "",
@@ -64,11 +67,12 @@ const Register = {
     };
   },
 
+  //METHODES_________________________________________________________________________________________
   methods: {
     validation() {
       this.registre();
     },
-
+    //SYSTEME D'INSCRIPTION POUR OBTENIR TOKEN
     async registre() {
       const response = await fetch(
         "https://snapi-coyote.osc-fr1.scalingo.io/register",
@@ -92,7 +96,9 @@ const Register = {
     },
   },
 
+  //COMPUTED________________________________________________________________________________________
   computed: {
+    //Vérification automatique des champs
     verifPrenom() {
       if (String(this.firstname).length > 2) {
         return "green";
@@ -121,6 +127,7 @@ const Register = {
       return "red";
     },
 
+    //Confirmation du formulaire
     allConfirm() {
       if (
         this.verifNom == "green" &&
@@ -133,10 +140,10 @@ const Register = {
     },
   },
 };
-
+//EXPORTATION DU Register
 export default Register;
 </script>
-
+<!--STYLE____________________________________________________________________________________-->
 <style scoped>
 .green {
   border: solid 2px green;
