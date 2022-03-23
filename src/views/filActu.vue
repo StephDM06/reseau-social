@@ -3,6 +3,7 @@
     <button id="openCreatePost" @click="showtext = !showtext">
       Post something
     </button>
+
     <!--form pour creation nouveau post-->
     <div class="newPost" v-show="showtext">
       <span id="newPostTitle">Create Post:</span>
@@ -14,6 +15,7 @@
           placeholder="Title..."
           v-model.lazy="title"
         />
+
         <input
           placeholder="Your post..."
           maxlength="80"
@@ -25,15 +27,32 @@
         <span id="buttonAddPost" @click="getNewPost">Add Post</span>
       </form>
     </div>
-    <List
-      v-for="(element, index) in post"
-      :key="index"
-      :lastname="element.lastname"
-      :firstname="element.firstname"
-      :title="element.title"
-      :content="element.content"
-    >
-    </List>
+    <div class="mainPostsContainer">
+      <div class="postsContainer">
+        <div id="indivPost" v-for="(element, index) in posts" :key="index">
+          <List
+            class="liste"
+            :key="index"
+            :lastname="element.lastname"
+            :firstname="element.firstname"
+            :title="element.title"
+            :content="element.content"
+          >
+          </List>
+          <div>
+            <button @click="showcomment = !showcomment">Commenter</button>
+            <button>Like</button>
+            <textarea
+              name=""
+              id=""
+              cols="20"
+              rows="1"
+              v-show="showcomment"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -44,13 +63,16 @@ import List from "@/components/RecupPost.vue";
 const DataPost = {
   data() {
     return {
-      post: [],
-      //tableau pour stocker nouveau post
-      newPostTable: [],
+      posts: [],
+      verif: true,
+      token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjM5OWJlOTI3ZGRiOTAwMWE4NzViZDUiLCJpYXQiOjE2NDgwMjQ5MTgsImV4cCI6MTY0ODExMTMxOH0.caIFiFoS-QCjwSdUCs6c8IoaV5Y1Y3DtKjeHuyTD3Cg",
+
       //data properties pour récuperer les valuers des inputs d'un nouveau post
       title: "",
       content: "",
       showtext: false,
+      showcomment: true,
     };
   },
   components: {
@@ -58,25 +80,46 @@ const DataPost = {
     List: List,
   },
   methods: {
+    async getPosts() {
+      const Post = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/posts"
+      );
+      let data = await Post.json();
+
+      this.posts = data.posts;
+    },
     getNewPost() {
       console.log("coucou");
       if (this.title == "" && this.content == "") {
         return alert("veuillez remplir les champs");
       } else {
-        this.newPostTable.push({ title: this.title, content: this.content });
+        const newPost = { title: this.title, content: this.content };
         // this.newPostTable.push(this.content);
-        this.title = "";
-        this.content = "";
-        console.log(this.newPostTable);
+        // this.title = "";
+        // this.content = "";
+        this.newPublication(newPost);
+      }
+    },
+    async newPublication(post) {
+      const publi = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/post",
+        {
+          method: "POST",
+          body: JSON.stringify(post),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + this.token,
+          },
+        }
+      );
+
+      if (publi.status === 200) {
+        this.getPosts();
       }
     },
   },
   async mounted() {
-    const Post = await fetch("https://snapi-coyote.osc-fr1.scalingo.io/posts");
-    let data = await Post.json();
-
-    this.post = data.posts;
-    console.log(this.post);
+    this.getPosts();
   },
 };
 
@@ -84,7 +127,6 @@ export default DataPost;
 </script>
 <style scoped>
 #principale {
-  background-image: url();
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
 }
@@ -93,11 +135,11 @@ export default DataPost;
   display: flex;
   flex-direction: column;
   margin-top: 10%;
+  margin-bottom: 10%;
   align-items: center;
 }
 
 #newPostForm {
-  border: none;
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -130,5 +172,23 @@ export default DataPost;
   background-color: #b0eeb3;
   padding: 0.5rem;
   border-radius: 25%;
+}
+.indivPost {
+  width: 50%;
+}
+/* Fin style form new post*/
+
+/**  Style du conteneur qui tient tous les posts */
+.postsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 80%;
+}
+
+.mainPostsContainer {
+  display: flex;
+  justify-content: center;
 }
 </style>
