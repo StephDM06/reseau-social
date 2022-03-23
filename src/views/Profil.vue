@@ -1,30 +1,49 @@
 <template>
-  <div id="main-profil">
-    <section id="profil">
-      <h1>Profil</h1>
-    </section>
-    <section id="donnees">
-      <p>Nom: {{ nom }}</p>
-      <p>Prénom: {{ prenom }}</p>
-      <p>Mail: {{ mail }}</p>
-      <p>Mot de passe: {{ mdp }}</p>
-    </section>
-  </div>
+  <ProfilData
+    :nom="profilTab.lastname"
+    :prenom="profilTab.firstname"
+    :mail="profilTab.email"
+  ></ProfilData>
 </template>
 
 <script>
-const Profil = {
+import ProfilData from "@/components/RecupProfil.vue";
+
+const ProfilDonnees = {
   data() {
     return {
-      profil: [],
+      profilTab: {},
+      toktok:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNiNDA0NmFjODJlZTAwMWJiNGY4NWUiLCJpYXQiOjE2NDgwNTAyNjMsImV4cCI6MTY0ODEzNjY2M30.Y4a0sOphqQDdWm6tpk4n3_g2AJbj7EeqMmVVmlMqMbM",
     };
   },
+
   methods: {
-    dataProfil() {},
+    async dataProfil() {
+      const donneesprofil = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/user",
+        {
+          method: "GET",
+          headers: {
+            "content-Type": "application/json",
+            Authorization: "bearer " + this.toktok,
+          },
+        }
+      );
+      console.log(this.profilTab);
+      const donnees = await donneesprofil.json();
+      this.profilTab = donnees;
+    },
+  },
+  mounted() {
+    this.dataProfil();
+  },
+  components: {
+    ProfilData,
   },
 };
 
-export default Profil;
+export default ProfilDonnees;
 </script>
 
 <style scoped>

@@ -23,7 +23,7 @@
     </div>
     <div>
       <img src="../img/fifthMonkey.jpg" alt="person5" />
-      <p>Juan Malissa</p>
+      <p>Juan Manuel</p>
     </div>
   </section>
 </template>

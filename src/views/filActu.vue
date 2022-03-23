@@ -1,13 +1,16 @@
 <template>
   <div id="principale">
-    <button id="openCreatePost" @click="showtext = !showtext">
+    <button
+      id="openCreatePost"
+      @click="verifToken() ? (showtext = !showtext) : ''"
+    >
       Post something
     </button>
 
     <!--form pour creation nouveau post-->
     <div class="newPost" v-show="showtext">
       <span id="newPostTitle">Create Post:</span>
-      <form id="newPostForm" action="">
+      <form id="newPostForm">
         <input
           type="text"
           name="titleInput"
@@ -27,6 +30,7 @@
         <span id="buttonAddPost" @click="getNewPost">Add Post</span>
       </form>
     </div>
+
     <div class="mainPostsContainer">
       <div class="postsContainer">
         <div id="indivPost" v-for="(element, index) in posts" :key="index">
@@ -40,7 +44,7 @@
           >
           </List>
           <div>
-            <button @click="showcomment = !showcomment">Commenter</button>
+            <button>Commenter</button>
             <button>Like</button>
             <textarea
               name=""
@@ -66,12 +70,12 @@ const DataPost = {
       //data properties pour récuperer les valuers des inputs d'un nouveau post et afficher les posts existants
       posts: [],
       verif: true,
-      token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjM5OWJlOTI3ZGRiOTAwMWE4NzViZDUiLCJpYXQiOjE2NDgwMjQ5MTgsImV4cCI6MTY0ODExMTMxOH0.caIFiFoS-QCjwSdUCs6c8IoaV5Y1Y3DtKjeHuyTD3Cg",
+      toktok:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNiNDA0NmFjODJlZTAwMWJiNGY4NWUiLCJpYXQiOjE2NDgwNTAyNjMsImV4cCI6MTY0ODEzNjY2M30.Y4a0sOphqQDdWm6tpk4n3_g2AJbj7EeqMmVVmlMqMbM",
       title: "",
       content: "",
       showtext: false,
-      showcomment: true,
+      showcomment: "",
     };
   },
   //Déclaration des composants et intégration dans le VDOM
@@ -80,6 +84,15 @@ const DataPost = {
     List: List,
   },
   methods: {
+    verifToken() {
+      if (!this.toktok) {
+        this.$router.push("/connexion");
+        return false;
+      }
+
+      return true;
+    },
+
     //Récupération des posts sur le serveur
     async getPosts() {
       const Post = await fetch(
@@ -91,16 +104,20 @@ const DataPost = {
     },
     getNewPost() {
       //Attribution des valeurs du nouveau post title et content
-      if (this.title == "" && this.content == "") {
-        return alert("veuillez remplir les champs");
-      } else {
-        const newPost = { title: this.title, content: this.content };
+      // if (this.title == "" && this.content == "") {
+      //   return alert("veuillez remplir les champs");
+      // } else {
+      const newPost = { title: this.title, content: this.content };
 
-        this.newPublication(newPost);
-      }
+      this.newPublication(newPost);
+      // }
     },
     //Envoi des nouveaux post et raffraichissement de l'affichage
     async newPublication(post) {
+      if (this.verifToken() === false) {
+        return;
+      }
+
       const publi = await fetch(
         "https://snapi-coyote.osc-fr1.scalingo.io/post",
         {
@@ -108,18 +125,23 @@ const DataPost = {
           body: JSON.stringify(post),
           headers: {
             "Content-Type": "application/json",
-            Authorization: "bearer " + this.token,
+            Authorization: "bearer " + this.toktok,
           },
         }
       );
       // Vérification du retour serveur et rappel de la méthode d'affichage
       if (publi.status === 200) {
         this.getPosts();
+        this.showtext = false;
       }
     },
+
+    //Au montage de l'application envoi de la requète des posts
   },
-  //Au montage de l'application envoi de la requète des posts
-  async mounted() {
+
+  mounted() {
+    this.toktok;
+    // this.toktok = localStorage.getItem("token");
     this.getPosts();
   },
 };
