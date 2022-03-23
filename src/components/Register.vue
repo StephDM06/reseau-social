@@ -38,7 +38,7 @@
       type="submit"
       value="Inscription"
       v-show="allConfirm"
-      @click="addToProfile"
+      @click="validation"
     />
 
     <h6>
@@ -57,7 +57,6 @@
 const Register = {
   data() {
     return {
-      profil: [],
       firstname: "",
       lastname: "",
       email: "",
@@ -66,21 +65,30 @@ const Register = {
   },
 
   methods: {
-    setNewInfo(e) {
-      this.firstname = e.target.value;
-      this.lastname = e.target.value;
-      this.password = e.target.value;
-      this.email = e.target.value;
+    validation() {
+      this.registre();
     },
 
-    addToProfile() {
-      this.profil.push({
-        firstname: this.firstname,
-        lastname: this.lastname,
-        password: this.password,
-        email: this.email,
-      });
-      console.log(this.profil);
+    async registre() {
+      const response = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/register",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            firstname: this.firstname,
+            lastname: this.lastname,
+            email: this.email,
+            password: this.password,
+          }),
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response, "test");
+      let toktok = await response.json();
+      console.log(toktok);
     },
   },
 
