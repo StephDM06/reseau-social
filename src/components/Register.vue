@@ -54,8 +54,6 @@
 </template>
 
 <script>
-
-
 const Registrer = {
   data() {
     return {
