@@ -23,7 +23,14 @@
         <span id="buttonAddPost" @click="getNewPost">Add Post</span>
       </form>
     </div>
-    <List> </List>
+    <List
+      v-for="(element, index) in post" 
+      :key="index"
+      :lastname="element.lastname"
+      :firstname="element.firstname"
+      :title="element.title"
+      :content="element.content"
+    > </List>
   </div>
 </template>
 
@@ -34,33 +41,47 @@ import List from "@/components/RecupPost.vue";
 const DataPost = {
   data() {
     return {
+      post:[],
       //tableau pour stocker nouveau post
       newPostTable: [],
+<<<<<<< HEAD
       showtext: ture,
+=======
+      
+
+>>>>>>> 501202aa4091b0ad808b5c3f47cd313bc67933aa
       //data properties pour récuperer les valuers des inputs d'un nouveau post
       title: "",
       content: "",
     };
   },
-
+  components: {
+    Post: Post,
+    List: List,
+  },
   methods: {
     getNewPost() {
-      if (title == "" && content == "") {
+      console.log("coucou");
+      if (this.title == "" && this.content == "") {
         return alert("veuillez remplir les champs");
       } else {
-        this.newPostTable.push(this.title);
-        this.newPostTable.push(this.title);
+        this.newPostTable.push({title:this.title, content:this.content});
+        // this.newPostTable.push(this.content);
         this.title = "";
         this.content = "";
         console.log(this.newPostTable);
       }
     },
   },
+    async mounted() {
+    const Post = await fetch("https://snapi-coyote.osc-fr1.scalingo.io/posts");
+    let data = await Post.json();
 
-  components: {
-    Post: Post,
-    List: List,
+    this.post = data.posts;
+    console.log(this.post);
   },
+
+
 };
 
 export default DataPost;
