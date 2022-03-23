@@ -6,8 +6,8 @@
     >
       Post something
     </button>
-
-    <!--form pour creation nouveau post-->
+    <!-- 
+    form pour creation nouveau post -->
     <div class="newPost" v-show="showtext">
       <span id="newPostTitle">Create Post:</span>
       <form id="newPostForm">
@@ -43,16 +43,26 @@
             :content="element.content"
           >
           </List>
-          <div>
-            <button>Commenter</button>
-            <button>Like</button>
+          <div class="main-comment">
+            <button @click="showcomment = index">commenter</button>
+            <button @click="addcomment(element._id)">
+              poster: {{ element.content.length }}
+            </button>
             <textarea
               name=""
               id=""
               cols="20"
               rows="1"
-              v-show="showcomment"
+              v-show="showcomment === index"
+              v-model="content"
             ></textarea>
+            <button @click="addLike(element._id)">
+              Like : {{ element.likes.length }}
+            </button>
+          </div>
+          <span>Comments:</span>
+          <div class="commentsContainer">
+            <!-- <span v-for="(element, index) in" class="indivComment"></span> a finir!!!!!! -->
           </div>
         </div>
       </div>
@@ -71,11 +81,12 @@ const DataPost = {
       posts: [],
       verif: true,
       toktok:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNiNDA0NmFjODJlZTAwMWJiNGY4NWUiLCJpYXQiOjE2NDgwNTAyNjMsImV4cCI6MTY0ODEzNjY2M30.Y4a0sOphqQDdWm6tpk4n3_g2AJbj7EeqMmVVmlMqMbM",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNiMzNmM2FjODJlZTAwMWJiNGY4MzgiLCJpYXQiOjE2NDgwNDcxMTgsImV4cCI6MTY0ODEzMzUxOH0.3JUX95YqofTh6IRYmGxkEA1jAMrCy9VzK2JvsV3R7AA",
       title: "",
       content: "",
       showtext: false,
-      showcomment: "",
+      showcomment: null,
+      Like: 0,
     };
   },
   //Déclaration des composants et intégration dans le VDOM
@@ -135,8 +146,46 @@ const DataPost = {
         this.showtext = false;
       }
     },
+    async addLike(id) {
+      const response = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/post/like",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            postId: id,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + this.token,
+          },
+        }
+      );
 
-    //Au montage de l'application envoi de la requète des posts
+      if (response.status === 200) {
+        this.getPosts();
+      }
+    },
+    async addcomment(id) {
+      const response = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/post/comment",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            postId: id,
+            content: this.content,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + this.token,
+          },
+        }
+      );
+      console.log(response);
+
+      if (response.status === 200) {
+        this.getPosts();
+      }
+    },
   },
 
   mounted() {
@@ -213,5 +262,11 @@ export default DataPost;
 .mainPostsContainer {
   display: flex;
   justify-content: center;
+  background-color: aqua;
+  border: 2px solid black;
+}
+.main-comment {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
