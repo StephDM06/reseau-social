@@ -24,16 +24,18 @@
         <span id="buttonAddPost" @click="getNewPost">Add Post</span>
       </form>
     </div>
-    <List
-      class="liste"
-      v-for="(element, index) in posts"
-      :key="index"
-      :lastname="element.lastname"
-      :firstname="element.firstname"
-      :title="element.title"
-      :content="element.content"
-    >
-    </List>
+    <div id="indivPost" v-for="(element, index) in posts" :key="index">
+      <List
+        class="liste"
+        :key="index"
+        :lastname="element.lastname"
+        :firstname="element.firstname"
+        :title="element.title"
+        :content="element.content"
+      >
+      </List>
+      <button>essaie</button>
+    </div>
   </div>
 </template>
 
