@@ -1,6 +1,6 @@
 <template>
   <div id="principale">
-    <span id="openCreatePost">Post something</span>
+    <button id="openCreatePost">Post something</button>
     <!--form pour creation nouveau post-->
     <div class="newPost">
       <span id="newPostTitle">Create Post:</span>
@@ -12,7 +12,6 @@
           placeholder="Title..."
           v-model.lazy="title"
         />
-
         <input
           placeholder="Your post..."
           maxlength="80"
@@ -37,7 +36,7 @@ const DataPost = {
     return {
       //tableau pour stocker nouveau post
       newPostTable: [],
-
+      showtext: ture,
       //data properties pour récuperer les valuers des inputs d'un nouveau post
       title: "",
       content: "",
@@ -68,6 +67,7 @@ export default DataPost;
 </script>
 <style scoped>
 #principale {
+  background-image: url();
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
 }
@@ -80,6 +80,7 @@ export default DataPost;
 }
 
 #newPostForm {
+  border: none;
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -113,5 +114,4 @@ export default DataPost;
   padding: 0.5rem;
   border-radius: 25%;
 }
-/* Fin style form new post*/
 </style>
