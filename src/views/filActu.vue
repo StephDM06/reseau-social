@@ -46,7 +46,7 @@
           <div class="main-comment">
             <button @click="showcomment = index">commenter</button>
             <button @click="addcomment(element._id)">
-              poster: {{ element.content.length }}
+              poster: {{ element.contentComment.length }}
             </button>
             <textarea
               name=""
@@ -54,16 +54,13 @@
               cols="20"
               rows="1"
               v-show="showcomment === index"
-              v-model="content"
+              v-model="contentComment"
             ></textarea>
             <button @click="addLike(element._id)">
               Like : {{ element.likes.length }}
             </button>
           </div>
-          <span>Comments:</span>
-          <div class="commentsContainer">
-            <!-- <span v-for="(element, index) in" class="indivComment"></span> a finir!!!!!! -->
-          </div>
+          
         </div>
       </div>
     </div>
@@ -83,7 +80,7 @@ const DataPost = {
       toktok:
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNiMzNmM2FjODJlZTAwMWJiNGY4MzgiLCJpYXQiOjE2NDgwNDcxMTgsImV4cCI6MTY0ODEzMzUxOH0.3JUX95YqofTh6IRYmGxkEA1jAMrCy9VzK2JvsV3R7AA",
       title: "",
-      content: "",
+      contentComment: "",
       showtext: false,
       showcomment: null,
       Like: 0,
@@ -172,7 +169,7 @@ const DataPost = {
           method: "POST",
           body: JSON.stringify({
             postId: id,
-            content: this.content,
+            contentComment: this.contentComment,
           }),
           headers: {
             "Content-Type": "application/json",
