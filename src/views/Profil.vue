@@ -59,12 +59,18 @@ export default ProfilDonnees;
   padding-top: 20px;
 }
 #main-profil {
-  font-display: block;
-  justify-content: center;
+  font-display: flex;
+  text-align: center;
   width: 50%;
+  height: 400px;
   margin-left: 25%;
-  margin-top: 5%;
-  background-color: aquamarine;
-  border-radius: 10px;
+  margin-top: 10%;
+  background-color: #9efff9;
+  border: solid 4px #00857d;
+  border-radius: 3px;
+}
+
+#profil h1 {
+  color: red;
 }
 </style>

@@ -46,7 +46,7 @@
           <div class="main-comment">
             <button @click="showcomment = index">commenter</button>
             <button @click="addcomment(element._id)">
-              poster: {{ element.comments.length }}
+              poster: {{ element.content.length }}
             </button>
             <textarea
               name=""
@@ -125,6 +125,7 @@ const DataPost = {
       this.posts = data.posts;
     },
     getNewPost() {
+      this.verifToken();
       //Attribution des valeurs du nouveau post title et content
       // if (this.title == "" && this.content == "") {
       //   return alert("veuillez remplir les champs");
