@@ -6,6 +6,7 @@
     >
       Post something
     </button>
+    <input type="submit" @click="deconnexion" value="Déconnexion" />
     <!-- 
     form pour creation nouveau post -->
     <div class="newPost" v-show="showtext">
@@ -18,7 +19,6 @@
           placeholder="Title..."
           v-model.lazy="title"
         />
-
         <input
           placeholder="Your post..."
           maxlength="80"
@@ -60,7 +60,6 @@
               Like : {{ element.likes.length }}
             </button>
           </div>
-          
         </div>
       </div>
     </div>
@@ -92,6 +91,35 @@ const DataPost = {
     List: List,
   },
   methods: {
+    deconnexion() {
+      this.deconnexion();
+    },
+
+    async deconnexion() {
+      const response = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/login" /* adresse du serveur avec le slash login pour la connexion et registrer partie kenny  */,
+        {
+          method: "POST",
+          body: JSON.stringify(this.authentif),
+          headers: {
+            "Content-Type":
+              "application/json" /* app/JSON formule de base avec le content type */,
+          },
+        }
+      );
+      console.log(
+        response,
+        "test"
+      ); /* renvois de la promesse du token lors de la connexion  passage du statut 422 à 200 du serveur */
+      let toktok = await response.json();
+      console.log(toktok);
+
+      if (toktok.success === true) {
+        /* condition que si valeur token == true , alors ça redirige vers la page filActu  et setItem pour stocker les valeurs et get items des autres pour recuperer les valeurs */
+        localStorage.removeItem("token", toktok.token);
+        this.$router.push("/");
+      }
+    },
     verifToken() {
       if (!this.toktok) {
         this.$router.push("/connexion");
@@ -183,6 +211,27 @@ const DataPost = {
         this.getPosts();
       }
     },
+    async addcomment(id) {
+      const response = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/post/comment",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            postId: id,
+            content: this.content,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + this.token,
+          },
+        }
+      );
+      console.log(response);
+
+      if (response.status === 200) {
+        this.getPosts();
+      }
+    },
   },
 
   mounted() {
@@ -253,17 +302,15 @@ export default DataPost;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  width: 80%;
+  width: 50%;
 }
-
 .mainPostsContainer {
   display: flex;
-  justify-content: center;
-  background-color: aqua;
-  border: 2px solid black;
+  justify-content: justify;
 }
 .main-comment {
   display: flex;
   flex-wrap: wrap;
+  border: 2px solid black;
 }
 </style>
