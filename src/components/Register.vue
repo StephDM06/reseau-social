@@ -147,3 +147,11 @@ const Register = {
 //EXPORTATION DU Register
 export default Register;
 </script>
+<style scoped>
+.green {
+  border: solid 2px green;
+}
+.red {
+  border: solid 2px red;
+}
+</style>

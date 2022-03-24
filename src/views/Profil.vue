@@ -25,7 +25,7 @@ const ProfilDonnees = {
           method: "GET",
           headers: {
             "content-Type": "application/json",
-            Authorization: "bearer " + this.toktok,
+            Authorization: "bearer " + localStorage.getItem("token"),
           },
         }
       );
