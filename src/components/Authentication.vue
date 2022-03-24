@@ -19,8 +19,8 @@ const LoginForm = {
     /* data properties */
     return {
       authentif: {
-        email: "test@test.com",
-        password: "test",
+        email: "",
+        password: "",
       },
     };
   },
@@ -53,9 +53,9 @@ const LoginForm = {
       if (toktok.success === true) {
         /* condition que si valeur token == true , alors ça redirige vers la page filActu  et setItem pour stocker les valeurs et get items des autres pour recuperer les valeurs */
         localStorage.setItem("token", toktok.token);
-        this.$router.push(
-          "/"
-        ); /* formulue pour pusher la page / quand on click sur connection si cest true */
+        this.$router.push("/");
+
+        /* formulue pour pusher la page / quand on click sur connection si cest true */
       }
     },
   },
