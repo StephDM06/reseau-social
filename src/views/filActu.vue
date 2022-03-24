@@ -46,7 +46,7 @@
           <div class="main-comment">
             <button @click="showcomment = index">commenter</button>
             <button @click="addcomment(element._id)">
-              poster: {{ element.contentComment.length }}
+              poster: {{ element.content.length }}
             </button>
             <textarea
               name=""
@@ -79,7 +79,7 @@ const DataPost = {
       toktok:
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNiMzNmM2FjODJlZTAwMWJiNGY4MzgiLCJpYXQiOjE2NDgwNDcxMTgsImV4cCI6MTY0ODEzMzUxOH0.3JUX95YqofTh6IRYmGxkEA1jAMrCy9VzK2JvsV3R7AA",
       title: "",
-      contentComment: "",
+      content: "",
       showtext: false,
       showcomment: null,
       Like: 0,
@@ -197,32 +197,11 @@ const DataPost = {
           method: "POST",
           body: JSON.stringify({
             postId: id,
-            contentComment: this.contentComment,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "bearer " + this.toktok,
-          },
-        }
-      );
-      console.log(response);
-
-      if (response.status === 200) {
-        this.getPosts();
-      }
-    },
-    async addcomment(id) {
-      const response = await fetch(
-        "https://snapi-coyote.osc-fr1.scalingo.io/post/comment",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            postId: id,
             content: this.content,
           }),
           headers: {
             "Content-Type": "application/json",
-            Authorization: "bearer " + this.token,
+            Authorization: "bearer " + this.toktok,
           },
         }
       );
