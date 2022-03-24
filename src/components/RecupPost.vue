@@ -1,26 +1,27 @@
 <template>
   <div id="fil">
-    <p>{{ firstname }} {{ lastname }}</p>
-    <p><strong>{{ title }}</strong></p>
-    <p>{{ content }}</p>
+    <p>
+      Poster par: <strong>{{ firstname }} {{ lastname }}</strong>
+    </p>
+    <p>
+      Titre du post: <strong>{{ title }}</strong>
+    </p>
+    <p>
+      <i>{{ contentPost }}</i>
+    </p>
   </div>
 </template>
 
 <script>
 const List = {
-
   props: {
     title: String,
-    content: String,
+    contentPost: String,
     firstname: String,
     lastname: String,
   },
-
-
 };
 export default List;
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

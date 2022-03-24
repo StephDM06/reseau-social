@@ -4,30 +4,30 @@
       id="openCreatePost"
       @click="verifToken() ? (showtext = !showtext) : ''"
     >
-      Post something
+      Poster une nouveauté
     </button>
     <input type="submit" @click="deconnexion" value="Déconnexion" />
     <!-- 
     form pour creation nouveau post -->
     <div class="newPost" v-show="showtext">
-      <span id="newPostTitle">Create Post:</span>
+      <span id="newPostTitle">Publier un nouveau post</span>
       <form id="newPostForm">
         <input
           type="text"
           name="titleInput"
           id="titleInput"
-          placeholder="Title..."
+          placeholder="Titre du post..."
           v-model.lazy="title"
         />
         <input
-          placeholder="Your post..."
+          placeholder="Votre post..."
           maxlength="80"
           type="text"
           name="contentInput"
           id="contentInput"
           v-model.lazy="contentPost"
         />
-        <span id="buttonAddPost" @click="getNewPost">Add Post</span>
+        <span id="buttonAddPost" @click="getNewPost">Ajouter votre Post</span>
       </form>
     </div>
 
@@ -40,13 +40,13 @@
             :lastname="element.lastname"
             :firstname="element.firstname"
             :title="element.title"
-            :content="element.contentPost"
+            :contentPost="element.content"
           >
           </List>
           <div class="main-comment">
-            <button @click="showcomment = index">commenter</button>
+            <button @click="showcomment = index">Commenter</button>
             <button @click="addcomment(element._id)">
-              poster: {{ element.comments.length }}
+              Envoyez le commentaire: {{ element.comments.length }}
             </button>
             <textarea
               name=""
@@ -86,7 +86,7 @@ const DataPost = {
       //data properties pour récuperer les valuers des inputs d'un nouveau post et afficher les posts existants
       posts: [],
       verif: true,
-      toktok: "token",
+      toktok: localStorage.getItem("token"),
       title: "",
       content: "",
       showtext: false,
@@ -105,6 +105,7 @@ const DataPost = {
     deconnexion() {
       localStorage.removeItem("token");
       this.$router.push("/");
+      alert("Vous avez bien été déconnecté !");
       console.log(this.toktok);
     },
     verifToken() {
@@ -204,7 +205,7 @@ const DataPost = {
   },
 
   mounted() {
-    this.toktok = localStorage.getItem("token");
+    this.toktok;
     this.getPosts();
   },
 };

@@ -91,12 +91,34 @@ const Register = {
         }
       );
 
+      let data = await response.json();
+      if (data.success === true) {
+        this.connexion();
+      }
+      console.log(toktok);
+    },
+
+    async connexion() {
+      const response = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/login",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: this.email,
+            password: this.password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response, "test");
+
       let toktok = await response.json();
       if (toktok.success === true) {
         localStorage.setItem("token", toktok.token);
         this.$router.push("/");
       }
-      console.log(toktok);
     },
   },
 
@@ -147,11 +169,3 @@ const Register = {
 //EXPORTATION DU Register
 export default Register;
 </script>
-<style scoped>
-.green {
-  border: solid 2px green;
-}
-.red {
-  border: solid 2px red;
-}
-</style>

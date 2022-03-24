@@ -1,13 +1,9 @@
 <template>
   <nav class="navbar">
-    <h1>ACTU-DEV-WEB</h1>
+    <img src="@/img/logo.png" />
     <router-link class="route" to="/">Accueil</router-link>
     <router-link class="route" to="/Profil">Profil</router-link>
     <router-link class="route" to="/about">A Propos</router-link>
-    <div>
-      <input type="text" placeholder="Recherche" />
-      <button class="like">Recherche</button>
-    </div>
   </nav>
   <router-view />
 </template>
@@ -16,7 +12,7 @@
 
 <style scoped>
 .navbar {
-  background-color: aqua;
+  background-color: #00d1c5;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -31,18 +27,15 @@
   gap: 20px;
   text-align: center;
 }
-input {
-  border: none;
-  align-items: center;
-}
-.like {
-  border: none;
-  color: blue;
+img {
+  width: 150px;
+  height: 80px;
 }
 .route {
   border: none;
   border-radius: 5px;
-  width: 80px;
+  width: 110px;
+  height: 30px;
   color: rgb(102, 100, 100);
   background-color: rgb(180, 177, 177);
 }
