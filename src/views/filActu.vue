@@ -5,7 +5,7 @@
         id="openCreatePost"
         @click="verifToken() ? (showtext = !showtext) : ''"
       >
-        Post something
+        Pour s'exprimer, c'est par ici
       </button>
       <input
         id="submitButton"
