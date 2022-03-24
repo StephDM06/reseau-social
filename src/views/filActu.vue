@@ -183,6 +183,7 @@ const DataPost = {
 
     //requete Likes
     async addLike(id) {
+      this.verifToken();
       const response = await fetch(
         "https://snapi-coyote.osc-fr1.scalingo.io/post/like",
         {
@@ -203,6 +204,7 @@ const DataPost = {
     },
     //requete comment//
     async addcomment(id) {
+      this.verifToken();
       const response = await fetch(
         "https://snapi-coyote.osc-fr1.scalingo.io/post/comment",
         {
