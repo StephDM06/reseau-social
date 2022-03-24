@@ -44,27 +44,3 @@ const ProfilDonnees = {
 
 export default ProfilDonnees;
 </script>
-
-<style scoped>
-#profil {
-  font-family: lato;
-  text-align: center;
-  padding-top: 5%;
-}
-#donnees {
-  font-family: lato;
-  width: 350px;
-  text-align: left;
-  margin-left: 40%;
-  padding-top: 20px;
-}
-#main-profil {
-  font-display: block;
-  justify-content: center;
-  width: 50%;
-  margin-left: 25%;
-  margin-top: 5%;
-  background-color: aquamarine;
-  border-radius: 10px;
-}
-</style>
