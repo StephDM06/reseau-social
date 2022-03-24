@@ -25,7 +25,7 @@
           type="text"
           name="contentInput"
           id="contentInput"
-          v-model.lazy="content"
+          v-model.lazy="contentPost"
         />
         <span id="buttonAddPost" @click="getNewPost">Add Post</span>
       </form>
@@ -40,7 +40,7 @@
             :lastname="element.lastname"
             :firstname="element.firstname"
             :title="element.title"
-            :content="element.content"
+            :content="element.contentPost"
           >
           </List>
           <div class="main-comment">
@@ -54,11 +54,20 @@
               cols="20"
               rows="1"
               v-show="showcomment === index"
-              v-model="contentComment"
+              v-model="content"
             ></textarea>
             <button @click="addLike(element._id)">
               Like : {{ element.likes.length }}
             </button>
+          </div>
+          <span>Commentaire:</span>
+          <div class="commentsContainer">
+            <span
+              v-for="(element, index) in comments"
+              :key="index"
+              class="indivComment"
+            >
+            </span>
           </div>
         </div>
       </div>
@@ -69,6 +78,7 @@
 <script>
 import Post from "@/components/Post.vue";
 import List from "@/components/RecupPost.vue";
+import { Comment } from "@vue/runtime-core";
 
 const DataPost = {
   data() {
@@ -83,6 +93,8 @@ const DataPost = {
       showtext: false,
       showcomment: null,
       Like: 0,
+      contentPost: "",
+      comments: [],
     };
   },
   //Déclaration des composants et intégration dans le VDOM
@@ -143,7 +155,7 @@ const DataPost = {
       // if (this.title == "" && this.content == "") {
       //   return alert("veuillez remplir les champs");
       // } else {
-      const newPost = { title: this.title, content: this.content };
+      const newPost = { title: this.title, content: this.contentPost };
 
       this.newPublication(newPost);
       // }
@@ -171,6 +183,8 @@ const DataPost = {
         this.showtext = false;
       }
     },
+
+    //requete Likes
     async addLike(id) {
       const response = await fetch(
         "https://snapi-coyote.osc-fr1.scalingo.io/post/like",
@@ -190,6 +204,7 @@ const DataPost = {
         this.getPosts();
       }
     },
+    //requete comment//
     async addcomment(id) {
       const response = await fetch(
         "https://snapi-coyote.osc-fr1.scalingo.io/post/comment",
@@ -205,10 +220,14 @@ const DataPost = {
           },
         }
       );
-      console.log(response);
 
       if (response.status === 200) {
         this.getPosts();
+         
+         let data = comments.content;
+         this.content = data;
+        console.log(this.content);
+        
       }
     },
   },
