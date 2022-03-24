@@ -159,8 +159,6 @@ const Register = {
 //EXPORTATION DU Register
 export default Register;
 </script>
-<<<<<<< HEAD
-=======
 <style scoped>
 .main-form {
   width: 50%;
@@ -196,4 +194,3 @@ p {
   background-color: #007871;
 }
 </style>
->>>>>>> 65475671caccbb0a96f91da86bbd59aae5bebd1b
