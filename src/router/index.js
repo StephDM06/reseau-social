@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import DataPost from "../views/filActu.vue";
 import ProfilDonnees from "../views/Profil.vue";
-
+import authent from "@/views/connexion.vue";
 const routes = [
   {
     path: "/about",
@@ -22,6 +22,11 @@ const routes = [
     path: "/profil",
     name: "Profil",
     component: ProfilDonnees,
+  },
+  {
+    path: "/connexion",
+    name: "connexion",
+    component: authent,
   },
 ];
 
