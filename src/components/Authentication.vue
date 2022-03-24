@@ -1,10 +1,15 @@
 <template>
-  <div>
-    <h1>J'ai déjà un compte</h1>
-    <form @submit.prevent>
+  <div class="formident">
+    <h1 class="titre">Connectez-vous!</h1>
+    <form @submit.prevent class="identite">
       <input type="email" v-model="authentif.email" />
       <input type="password" v-model="authentif.password" />
-      <input type="submit" @click="validation" value="connectez vous" />
+      <input
+        type="submit"
+        @click="validation"
+        value="Connecter"
+        class="button"
+      />
     </form>
   </div>
 </template>
@@ -50,4 +55,27 @@ const LoginForm = {
 export default LoginForm;
 </script>
 
-<style></style>
+<style>
+.titre {
+  color: #007871;
+  font-size: 2rem;
+  padding-left: 30%;
+}
+.formident {
+  margin-left: 25%;
+  width: 50%;
+  border-radius: 5px;
+}
+.identite {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding-bottom: 20px;
+}
+.button {
+  background-color: #007871;
+  border: none;
+  color: white;
+}
+</style>
