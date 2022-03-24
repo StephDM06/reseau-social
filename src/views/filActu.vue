@@ -19,7 +19,6 @@
           placeholder="Title..."
           v-model.lazy="title"
         />
-
         <input
           placeholder="Your post..."
           maxlength="80"
@@ -60,10 +59,6 @@
             <button @click="addLike(element._id)">
               Like : {{ element.likes.length }}
             </button>
-          </div>
-          <span>Comments:</span>
-          <div class="commentsContainer">
-            <!-- <span v-for="(element, index) in" class="indivComment"></span> a finir!!!!!! -->
           </div>
         </div>
       </div>
@@ -216,6 +211,27 @@ const DataPost = {
         this.getPosts();
       }
     },
+    async addcomment(id) {
+      const response = await fetch(
+        "https://snapi-coyote.osc-fr1.scalingo.io/post/comment",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            postId: id,
+            content: this.content,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + this.token,
+          },
+        }
+      );
+      console.log(response);
+
+      if (response.status === 200) {
+        this.getPosts();
+      }
+    },
   },
 
   mounted() {
@@ -286,17 +302,15 @@ export default DataPost;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  width: 80%;
+  width: 50%;
 }
-
 .mainPostsContainer {
   display: flex;
-  justify-content: center;
-  background-color: aqua;
-  border: 2px solid black;
+  justify-content: justify;
 }
 .main-comment {
   display: flex;
   flex-wrap: wrap;
+  border: 2px solid black;
 }
 </style>
