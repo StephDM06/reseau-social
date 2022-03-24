@@ -63,10 +63,11 @@
           <span>Commentaire:</span>
           <div class="commentsContainer">
             <span
-              v-for="(element, index) in comments"
+              v-for="(items, index) in element.comments"
               :key="index"
               class="indivComment"
             >
+              {{ items.content }}
             </span>
           </div>
         </div>
@@ -147,7 +148,6 @@ const DataPost = {
         "https://snapi-coyote.osc-fr1.scalingo.io/posts"
       );
       let data = await Post.json();
-
       this.posts = data.posts;
     },
     getNewPost() {
@@ -156,8 +156,7 @@ const DataPost = {
       //   return alert("veuillez remplir les champs");
       // } else {
       const newPost = { title: this.title, content: this.contentPost };
-
-      this.newPublication(newPost);
+      this.comments = this.newPublication(newPost);
       // }
     },
     //Envoi des nouveaux post et raffraichissement de l'affichage
@@ -223,11 +222,6 @@ const DataPost = {
 
       if (response.status === 200) {
         this.getPosts();
-         
-         let data = comments.content;
-         this.content = data;
-        console.log(this.content);
-        
       }
     },
   },
