@@ -305,4 +305,16 @@ export default DataPost;
   flex-wrap: wrap;
   border: 2px solid black;
 }
+
+/**Container des commentaires */
+.commentsContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border: solid 3px;
+}
+
+.indivComment{
+  background-color: #dbdbdb;
+}
 </style>
