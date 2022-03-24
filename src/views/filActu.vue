@@ -1,14 +1,20 @@
 <template>
   <div id="principale">
-    <button
-      id="openCreatePost"
-      @click="verifToken() ? (showtext = !showtext) : ''"
-    >
-      Post something
-    </button>
-    <input type="submit" @click="deconnexion" value="Déconnexion" />
-    <!-- 
-    form pour creation nouveau post -->
+    <div id="topButtonsContainer">
+      <button
+        id="openCreatePost"
+        @click="verifToken() ? (showtext = !showtext) : ''"
+      >
+        Post something
+      </button>
+      <input
+        id="submitButton"
+        type="submit"
+        @click="deconnexion"
+        value="Déconnexion"
+      />
+    </div>
+    <!--form pour creation nouveau post -->
     <div class="newPost" v-show="showtext">
       <span id="newPostTitle">Create Post:</span>
       <form id="newPostForm">
@@ -44,8 +50,10 @@
           >
           </List>
           <div class="main-comment">
-            <button @click="showcomment = index">commenter</button>
-            <button @click="addcomment(element._id)">
+            <button class="buttonComment" @click="showcomment = index">
+              commenter
+            </button>
+            <button class="buttonPoster" @click="addcomment(element._id)">
               poster: {{ element.comments.length }}
             </button>
             <textarea
@@ -56,11 +64,11 @@
               v-show="showcomment === index"
               v-model="content"
             ></textarea>
-            <button @click="addLike(element._id)">
+            <button class="buttonLike" @click="addLike(element._id)">
               Like : {{ element.likes.length }}
             </button>
           </div>
-          <span>Commentaire:</span>
+          <span id="spanCommentaire">Commentaire:</span>
           <div class="commentsContainer">
             <span
               v-for="(items, index) in element.comments"
@@ -212,9 +220,29 @@ const DataPost = {
 export default DataPost;
 </script>
 <style scoped>
+template {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 #principale {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
+  text-align: -webkit-center;
+  background-color: #e8fffd;
+}
+#topButtonsContainer {
+  display: flex;
+  gap: 2rem;
+  place-content: flex-end;
+  width: 87%;
+}
+
+#submitButton {
+  cursor: pointer;
+  background-color: #2fccc2;
+  padding: 0.5rem;
+  border-radius: 5%;
+  border: none;
+  margin-top: 1rem;
 }
 /* Style form new post*/
 .newPost {
@@ -223,6 +251,9 @@ export default DataPost;
   margin-top: 10%;
   margin-bottom: 10%;
   align-items: center;
+  border: solid 5px #2fccc2;
+  width: 80vw;
+  padding: 1rem;
 }
 
 #newPostForm {
@@ -241,23 +272,26 @@ export default DataPost;
 
 #buttonAddPost {
   border: none;
-  background-color: #b0eeb3;
+  background-color: #2fccc2;
   border-radius: 15%;
   cursor: pointer;
+  padding: 0.5rem;
 }
 
 #newPostTitle {
-  background-color: #b0eeb3;
-  font-size: 1.5rem;
+  font-size: 2rem;
   width: 20%;
+  text-transform: capitalize;
+  border-bottom: solid 3px #2fccc2;
 }
 
 #openCreatePost {
   cursor: pointer;
-  margin-left: 60rem;
-  background-color: #b0eeb3;
+  background-color: #2fccc2;
   padding: 0.5rem;
-  border-radius: 25%;
+  border-radius: 5%;
+  border: none;
+  margin-top: 1rem;
 }
 .indivPost {
   width: 50%;
@@ -271,15 +305,21 @@ export default DataPost;
   align-items: center;
   gap: 2rem;
   width: 50%;
+  background-color: #e7fffd;
 }
 .mainPostsContainer {
   display: flex;
-  justify-content: justify;
+  justify-content: center;
+  background: linear-gradient(#2fccc2, #cde6e5);
+  margin-top: 1rem;
 }
 .main-comment {
   display: flex;
   flex-wrap: wrap;
-  border: 2px solid black;
+  gap: 2rem;
+  margin: 0rem 0rem 4rem 0rem;
+  justify-content: space-evenly;
+  width: 60%;
 }
 
 /**Container des commentaires */
@@ -287,10 +327,48 @@ export default DataPost;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  border: solid 3px;
+}
+
+.liste {
+  background-color: #2fccc2;
+}
+
+#spanCommentaire {
+  color: #00857d;
 }
 
 .indivComment {
-  background-color: #dbdbdb;
+  color: #004641;
+  background-color: #bee5e4;
+}
+#indivPost {
+  background-color: #e7fffd;
+  border: solid 3px #00857d;
+  width: 80%;
+}
+
+/**Style Buttons commenter poster et like*/
+.buttonComment {
+  border: none;
+  background-color: #c7f1ef;
+  color: #00857d;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+.buttonPoster {
+  border: none;
+  background-color: #c7ecea;
+  color: #00857d;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+.buttonLike {
+  border: none;
+  color: #004641;
+  background-color: #bff3f0;
+  border-radius: 40%;
+  cursor: pointer;
 }
 </style>
