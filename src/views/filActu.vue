@@ -88,8 +88,6 @@ const DataPost = {
   components: {
     Post: Post,
     List: List,
-    Lost: lost,
-    ù$$$$$$,
   },
   methods: {
     verifToken() {
@@ -274,17 +272,15 @@ export default DataPost;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  width: 80%;
+  width: 50%;
 }
-
 .mainPostsContainer {
   display: flex;
-  justify-content: center;
-  background-color: aqua;
-  border: 2px solid black;
+  justify-content: justify;
 }
 .main-comment {
   display: flex;
   flex-wrap: wrap;
+  border: 2px solid black;
 }
 </style>
