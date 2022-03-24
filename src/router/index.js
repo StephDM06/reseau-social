@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import DataPost from "../views/filActu.vue";
 import ProfilDonnees from "../views/Profil.vue";
 import authent from "@/views/connexion.vue";
+
 const routes = [
   {
     path: "/about",

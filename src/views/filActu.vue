@@ -79,7 +79,6 @@
 <script>
 import Post from "@/components/Post.vue";
 import List from "@/components/RecupPost.vue";
-import { Comment } from "@vue/runtime-core";
 
 const DataPost = {
   data() {
@@ -87,8 +86,7 @@ const DataPost = {
       //data properties pour récuperer les valuers des inputs d'un nouveau post et afficher les posts existants
       posts: [],
       verif: true,
-      toktok:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNiMzNmM2FjODJlZTAwMWJiNGY4MzgiLCJpYXQiOjE2NDgwNDcxMTgsImV4cCI6MTY0ODEzMzUxOH0.3JUX95YqofTh6IRYmGxkEA1jAMrCy9VzK2JvsV3R7AA",
+      toktok: "token",
       title: "",
       content: "",
       showtext: false,
@@ -105,33 +103,33 @@ const DataPost = {
   },
   methods: {
     deconnexion() {
-      this.deconnexion();
-    },
+      localStorage.removeItem("token");
+      this.$router.push("/");
+      console.log(this.toktok);
+      // async deconnexion() {
+      //   const response = await fetch(
+      //     "https://snapi-coyote.osc-fr1.scalingo.io/login" /* adresse du serveur avec le slash login pour la connexion et registrer partie kenny  */,
+      //     {
+      //       method: "POST",
+      //       body: JSON.stringify(this.authentif),
+      //       headers: {
+      //         "Content-Type":
+      //           "application/json" /* app/JSON formule de base avec le content type */,
+      //       },
+      //     }
+      //   );
+      //   console.log(
+      //     response,
+      //     "test"
+      //   ); /* renvois de la promesse du token lors de la connexion  passage du statut 422 à 200 du serveur */
+      //   let toktok = await response.json();
+      //   console.log(toktok);
 
-    async deconnexion() {
-      const response = await fetch(
-        "https://snapi-coyote.osc-fr1.scalingo.io/login" /* adresse du serveur avec le slash login pour la connexion et registrer partie kenny  */,
-        {
-          method: "POST",
-          body: JSON.stringify(this.authentif),
-          headers: {
-            "Content-Type":
-              "application/json" /* app/JSON formule de base avec le content type */,
-          },
-        }
-      );
-      console.log(
-        response,
-        "test"
-      ); /* renvois de la promesse du token lors de la connexion  passage du statut 422 à 200 du serveur */
-      let toktok = await response.json();
-      console.log(toktok);
-
-      if (toktok.success === true) {
-        /* condition que si valeur token == true , alors ça redirige vers la page filActu  et setItem pour stocker les valeurs et get items des autres pour recuperer les valeurs */
-        localStorage.removeItem("token", toktok.token);
-        this.$router.push("/");
-      }
+      //   if (toktok.success === true) {
+      //     /* condition que si valeur token == true , alors ça redirige vers la page filActu  et setItem pour stocker les valeurs et get items des autres pour recuperer les valeurs */
+      //     localStorage.removeItem("token", toktok.token);
+      //     this.$router.push("/");
+      //   }
     },
     verifToken() {
       if (!this.toktok) {
@@ -227,8 +225,7 @@ const DataPost = {
   },
 
   mounted() {
-    this.toktok;
-    // this.toktok = localStorage.getItem("token");
+    this.toktok = localStorage.getItem("token");
     this.getPosts();
   },
 };
@@ -307,14 +304,14 @@ export default DataPost;
 }
 
 /**Container des commentaires */
-.commentsContainer{
+.commentsContainer {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
   border: solid 3px;
 }
 
-.indivComment{
+.indivComment {
   background-color: #dbdbdb;
 }
 </style>

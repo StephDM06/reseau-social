@@ -13,8 +13,7 @@ const ProfilDonnees = {
   data() {
     return {
       profilTab: {},
-      toktok:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNiNDA0NmFjODJlZTAwMWJiNGY4NWUiLCJpYXQiOjE2NDgwNTAyNjMsImV4cCI6MTY0ODEzNjY2M30.Y4a0sOphqQDdWm6tpk4n3_g2AJbj7EeqMmVVmlMqMbM",
+      toktok: "token",
     };
   },
 
