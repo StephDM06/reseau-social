@@ -5,10 +5,14 @@
       <router-link class="route" to="/" id="buttonnav">Accueil</router-link>
     </button>
     <button id="buttonnav">
-      <router-link class="route" to="/Profil" id="buttonnav" >Profil</router-link>
-      </button>
+      <router-link class="route" to="/Profil" id="buttonnav"
+        >Profil</router-link
+      >
+    </button>
     <button id="buttonnav">
-      <router-link class="route" to="/about" id="buttonnav">A Propos</router-link>
+      <router-link class="route" to="/about" id="buttonnav"
+        >A Propos</router-link
+      >
     </button>
   </nav>
   <router-view />
@@ -26,6 +30,7 @@
   color: blue;
   border-bottom: 3px solid blue;
   border-radius: 5px;
+  font-family: lato;
 }
 .first {
   display: flex;
@@ -50,9 +55,10 @@ img {
   cursor: pointer;
   background-color: #239991;
   padding: 0.5rem;
-  border-radius: 5%;
+  border-radius: 10px;
   border: none;
   margin-top: 1rem;
   color: black;
+  width: 200px;
 }
 </style>

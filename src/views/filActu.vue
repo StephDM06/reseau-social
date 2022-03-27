@@ -49,50 +49,54 @@
             :contentPost="element.content"
           >
           </List>
-
-          <button
-            class="buttonComment"
-            @click="
-              showbutton = !showbutton;
-              showcomment = index;
-            "
-          >
-            commenter (déjà {{ element.comments.length }} commentaires)
-          </button>
-          <div v-show="showbutton">
-            <div class="main-comment">
-              <textarea
-                name=""
-                id=""
-                cols="20"
-                rows="1"
-                v-show="showcomment === index"
-                v-model="content"
-              ></textarea>
-
-              <button
-                class="buttonPoster"
-                @click="addcomment(element._id)"
-                v-show="showbutton"
-              >
-                poster le commentaire
-              </button>
-            </div>
-          </div>
-
-          <button class="buttonLike" @click="addLike(element._id)">
-            <img src="../img/like.png" alt="" /> {{ element.likes.length }}
-          </button>
           <div id="comments">
-            <span id="spanCommentaire">Commentaire(s):</span>
-            <div class="commentsContainer">
-              <span
-                v-for="(items, index) in element.comments"
-                :key="index"
-                class="indivComment"
-              >
-                {{ items.content }}
-              </span>
+            <button
+              class="buttonComment"
+              @click="
+                showbutton = !showbutton;
+                showcomment = index;
+              "
+            >
+              commenter (déjà {{ element.comments.length }} commentaires)
+            </button>
+            <div v-show="showbutton" class="main-comment">
+              <div id="dispo">
+                <textarea
+                  name=""
+                  id=""
+                  cols="20"
+                  rows="1"
+                  v-show="showcomment === index"
+                  v-model="content"
+                ></textarea>
+                <div>
+                  <button
+                    class="buttonPoster"
+                    @click="addcomment(element._id)"
+                    v-show="showbutton"
+                  >
+                    poster le commentaire
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <button class="buttonLike" @click="addLike(element._id)">
+              <img src="../img/like.png" alt="" /> {{ element.likes.length }}
+            </button>
+            <div id="comments">
+              <span id="spanCommentaire">Commentaire(s):</span>
+              <div class="commentsContainer">
+                <span
+                  v-for="(items, index) in element.comments"
+                  :key="index"
+                  :nom="firstname"
+                  :prenom="lastaname"
+                  class="indivComment"
+                >
+                  {{ items.content }} par <i>{{lastaname}} {{firstname}}</i>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -247,10 +251,10 @@ textarea {
   width: 120px;
 }
 template {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: lato;
 }
 #principale {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: lato;
   text-align: center;
   text-align: -webkit-center;
   background-color: #e8fffd;
@@ -281,7 +285,9 @@ template {
   width: 80vw;
   padding: 1rem;
 }
-
+#dispo {
+  display: block;
+}
 #newPostForm {
   display: flex;
   flex-direction: column;
@@ -291,8 +297,9 @@ template {
   gap: 0.5rem;
   margin-top: 3rem;
 }
-#comments{
+#spanCommentaire {
   margin-top: 3%;
+  margin-bottom: 3%;
 }
 #contentInput {
   width: 100%;
@@ -338,6 +345,7 @@ template {
 .mainPostsContainer {
   display: flex;
   justify-content: center;
+
   background: linear-gradient(#2fccc2, #cde6e5);
   margin-top: 1rem;
 }
@@ -383,6 +391,7 @@ template {
   color: #00857d;
   border-radius: 10%;
   cursor: pointer;
+  margin-bottom: 3%;
 }
 
 .buttonPoster {
