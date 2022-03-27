@@ -49,34 +49,51 @@
             :contentPost="element.content"
           >
           </List>
-          <div class="main-comment">
-            <button class="buttonComment" @click="showcomment = index">
-              commenter {{ element.comments.length }}
-            </button>
-            <button class="buttonPoster" @click="addcomment(element._id)">
-              poster:
-            </button>
-            <textarea
-              name=""
-              id=""
-              cols="20"
-              rows="1"
-              v-show="showcomment === index"
-              v-model="content"
-            ></textarea>
-            <button class="buttonLike" @click="addLike(element._id)">
-              Like : {{ element.likes.length }}
-            </button>
+
+          <button
+            class="buttonComment"
+            @click="
+              showbutton = !showbutton;
+              showcomment = index;
+            "
+          >
+            commenter (déjà {{ element.comments.length }} commentaires)
+          </button>
+          <div v-show="showbutton">
+            <div class="main-comment">
+              <textarea
+                name=""
+                id=""
+                cols="20"
+                rows="1"
+                v-show="showcomment === index"
+                v-model="content"
+              ></textarea>
+
+              <button
+                class="buttonPoster"
+                @click="addcomment(element._id)"
+                v-show="showbutton"
+              >
+                poster le commentaire
+              </button>
+            </div>
           </div>
-          <span id="spanCommentaire">Commentaire:</span>
-          <div class="commentsContainer">
-            <span
-              v-for="(items, index) in element.comments"
-              :key="index"
-              class="indivComment"
-            >
-              {{ items.content }}
-            </span>
+
+          <button class="buttonLike" @click="addLike(element._id)">
+            <img src="../img/like.png" alt="" /> {{ element.likes.length }}
+          </button>
+          <div id="comments">
+            <span id="spanCommentaire">Commentaire(s):</span>
+            <div class="commentsContainer">
+              <span
+                v-for="(items, index) in element.comments"
+                :key="index"
+                class="indivComment"
+              >
+                {{ items.content }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -99,6 +116,7 @@ const DataPost = {
       title: "",
       content: "",
       showtext: false,
+      showbutton: false,
       showcomment: null,
       Like: 0,
       contentPost: "",
@@ -224,6 +242,10 @@ const DataPost = {
 export default DataPost;
 </script>
 <style scoped>
+textarea {
+  height: 200px;
+  width: 120px;
+}
 template {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -269,7 +291,9 @@ template {
   gap: 0.5rem;
   margin-top: 3rem;
 }
-
+#comments{
+  margin-top: 3%;
+}
 #contentInput {
   width: 100%;
 }
@@ -319,10 +343,10 @@ template {
 }
 .main-comment {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 2rem;
   margin: 0rem 0rem 4rem 0rem;
-  justify-content: space-evenly;
+  justify-content: space-around;
   width: 60%;
 }
 
@@ -373,7 +397,11 @@ template {
   border: none;
   color: #004641;
   background-color: #bff3f0;
-  border-radius: 40%;
+  border-radius: 20%;
   cursor: pointer;
+}
+.buttonLike img {
+  width: 30px;
+  height: 30px;
 }
 </style>
