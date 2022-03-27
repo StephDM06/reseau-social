@@ -51,10 +51,10 @@
           </List>
           <div class="main-comment">
             <button class="buttonComment" @click="showcomment = index">
-              commenter
+              commenter {{ element.comments.length }}
             </button>
             <button class="buttonPoster" @click="addcomment(element._id)">
-              poster: {{ element.comments.length }}
+              poster:
             </button>
             <textarea
               name=""
@@ -87,6 +87,7 @@
 <script>
 import Post from "@/components/Post.vue";
 import List from "@/components/RecupPost.vue";
+import ProfilDonnees from "./Profil.vue";
 
 const DataPost = {
   data() {
@@ -108,6 +109,7 @@ const DataPost = {
   components: {
     Post: Post,
     List: List,
+    ProfilDonnees: ProfilDonnees,
   },
   methods: {
     deconnexion() {
@@ -240,7 +242,7 @@ template {
 
 #submitButton {
   cursor: pointer;
-  background-color: #2fccc2;
+  background-color: #239991;
   padding: 0.5rem;
   border-radius: 5%;
   border: none;
@@ -289,7 +291,7 @@ template {
 
 #openCreatePost {
   cursor: pointer;
-  background-color: #2fccc2;
+  background-color: #239991;
   padding: 0.5rem;
   border-radius: 5%;
   border: none;
@@ -347,6 +349,7 @@ template {
   background-color: #e7fffd;
   border: solid 3px #00857d;
   width: 80%;
+  border-radius: 7px;
 }
 
 /**Style Buttons commenter poster et like*/

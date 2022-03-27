@@ -13,6 +13,7 @@
 </template>
 
 <script>
+
 const ProfilData = {
   props: {
     nom: String,
@@ -20,6 +21,7 @@ const ProfilData = {
     mail: String,
   },
 };
+
 export default ProfilData;
 </script>
 

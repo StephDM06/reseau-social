@@ -1,9 +1,15 @@
 <template>
   <nav class="navbar">
     <img src="@/img/logo.png" />
-    <router-link class="route" to="/">Accueil</router-link>
-    <router-link class="route" to="/Profil">Profil</router-link>
-    <router-link class="route" to="/about">A Propos</router-link>
+    <button id="buttonnav">
+      <router-link class="route" to="/" id="buttonnav">Accueil</router-link>
+    </button>
+    <button id="buttonnav">
+      <router-link class="route" to="/Profil" id="buttonnav" >Profil</router-link>
+      </button>
+    <button id="buttonnav">
+      <router-link class="route" to="/about" id="buttonnav">A Propos</router-link>
+    </button>
   </nav>
   <router-view />
 </template>
@@ -38,5 +44,15 @@ img {
   height: 30px;
   color: rgb(102, 100, 100);
   background-color: rgb(180, 177, 177);
+}
+#buttonnav {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #239991;
+  padding: 0.5rem;
+  border-radius: 5%;
+  border: none;
+  margin-top: 1rem;
+  color: black;
 }
 </style>
