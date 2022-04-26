@@ -39,7 +39,7 @@
   text-align: center;
 }
 img {
-  width: 150px;
+  width: 250px;
   height: 80px;
 }
 .route {

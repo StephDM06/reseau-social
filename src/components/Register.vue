@@ -35,7 +35,7 @@
 
       <!--Condition d'utilisation que personne ne lit-->
       <p>
-        En cliquant sur S’inscrire, vous acceptez nos Conditions générales.
+        En cliquant sur Inscription, vous acceptez nos Conditions générales.
         Découvrez comment nous recueillons, utilisons et partageons vos données
         en lisant notre Politique d’utilisation des données et comment nous
         utilisons les cookies et autres technologies similaires en consultant

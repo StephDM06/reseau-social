@@ -27,7 +27,7 @@
         />
         <input
           placeholder="Votre post..."
-          maxlength="80"
+          maxlength="255"
           type="text"
           name="contentInput"
           id="contentInput"
@@ -64,7 +64,7 @@
                 <textarea
                   name=""
                   id=""
-                  cols="20"
+                  cols="255"
                   rows="1"
                   v-show="showcomment === index"
                   v-model="content"
@@ -247,8 +247,8 @@ export default DataPost;
 </script>
 <style scoped>
 textarea {
-  height: 200px;
-  width: 120px;
+  height: 65px;
+  width: 200px;
 }
 template {
   font-family: lato;

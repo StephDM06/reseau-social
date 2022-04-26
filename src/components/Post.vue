@@ -1,8 +1,8 @@
 <template>
   <div class="postContainer">
     <div id="post">
-      <span>Posted by:{{ user }}</span>
-      <span>Posted the: {{ date }}</span>
+      <span>Posté le:{{ user }}</span>
+      <span>Posté par: {{ date }}</span>
       <span>{{ content }}</span>
       <span class="buttonLike">like {{ like }}</span>
     </div>
