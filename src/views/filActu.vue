@@ -339,7 +339,7 @@ template {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  width: 50%;
+  width: 60%;
   background-color: #e7fffd;
 }
 .mainPostsContainer {
